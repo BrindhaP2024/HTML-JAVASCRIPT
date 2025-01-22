@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+
+<body>
+
+    <h1>DOM Manipulation</h1>
+
+    <div id="container">
+        <button id="addItemBtn">Add Item</button>
+        <button id="removeItemBtn">Remove Last Item</button>
+        <p id="demoParagraph">This is a simple paragraph.</p>
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+    </div>
+
+    <script>
+        let container = document.getElementById('container');
+        let boxes = document.getElementsByClassName('box');
+        let firstBox = document.querySelector('.box');
+        let allBoxes = document.querySelectorAll('.box');
+
+        let demoParagraph = document.getElementById('demoParagraph');
+        demoParagraph.style.color = 'blue';
+
+        document.getElementById('addItemBtn').addEventListener('click', () => {
+            let newDiv = document.createElement('div');
+            newDiv.textContent = 'New Box';
+            newDiv.className = 'box';
+            container.appendChild(newDiv);
+        });
+
+        document.getElementById('removeItemBtn').addEventListener('click', () => {
+            if (container.lastElementChild) {
+                container.removeChild(container.lastElementChild);
+            }
+        });
+
+        firstBox.addEventListener('click', () => {
+            allBoxes.forEach(box => {
+                box.style.backgroundColor = 'yellow';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Track & MediaRecorder Events</title>
+    <link rel="stylesheet" href="Audio.css">
+</head>
+<body>
+
+    <h1>Audio Track Management & Media Recording</h1>
+
+    <!-- Audio Element -->
+    <audio controls>
+        <source src="Media/Oh Butterfly ! BGM !.mp3" type="audio/mp3">
+    </audio>
+
+    <br><br>
+
+    <!-- Buttons for interacting with audio tracks -->
+    <button id="addTrackButton">Add Audio Track</button>
+    <button id="removeTrackButton">Remove Audio Track</button>
+    <button id="toggleTrackButton">Toggle Audio Track</button>
+
+    <!-- Media Recording Controls -->
+    <h2>Media Recording</h2>
+    <button id="startRecordingButton">Start Recording</button>
+    <button id="pauseRecordingButton" disabled>Pause Recording</button>
+    <button id="resumeRecordingButton" disabled>Resume Recording</button>
+    <button id="stopRecordingButton" disabled>Stop Recording</button>
+
+    <!-- Console for output -->
+    <div id="consoleOutput"></div>
+
+    <script src="Audio.js"></script>
+</body>
+</html>
+
+    

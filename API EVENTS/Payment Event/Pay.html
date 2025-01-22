@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaymentRequest Example</title>
+</head>
+
+<body>
+    <button id="payButton">Pay Now</button>
+    <script>
+        const payButton = document.getElementById('payButton');
+
+        payButton.addEventListener('click', async () => {
+            if (!window.PaymentRequest) {
+                console.log('PaymentRequest API is activated!!.');
+                return;
+            }
+
+            const supportedInstruments = [{
+                supportedMethods: 'basic-card',
+                data: {
+                    supportedNetworks: ['visa', 'mastercard'],
+                },
+            }];
+
+            const details = {
+                displayItems: [
+                    {
+                        label: 'Product 1',
+                        amount: { currency: 'USD', value: '10.00' },
+                    },
+                    {
+                        label: 'Product 2',
+                        amount: { currency: 'USD', value: '20.00' },
+                    },
+                ],
+                total: {
+                    label: 'Total',
+                    amount: { currency: 'USD', value: '30.00' },
+                },
+            };
+
+            const options = {};
+
+            const request = new PaymentRequest(supportedInstruments, details, options);
+
+            request.addEventListener('shippingaddresschange', (event) => {
+                console.log('Shipping address changed:', event.target.shippingAddress);
+                event.updateWith(details); 
+            });
+
+            request.addEventListener('shippingoptionchange', (event) => {
+                console.log('Shipping option changed:', event.target.shippingOption);
+                event.updateWith(details);
+            });
+
+            try {
+                const paymentResponse = await request.show();
+                console.log('Payment successful:', paymentResponse);
+                await paymentResponse.complete('success');
+            } catch (error) {
+                console.error('Payment failed:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

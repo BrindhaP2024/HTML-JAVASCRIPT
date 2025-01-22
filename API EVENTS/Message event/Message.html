@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Window</title>
+</head>
+<body>
+    <iframe src="iframe.html" id="iframe" width="400" height="300"></iframe>
+    
+    <button id="sendMessageButton">Send Message to Iframe</button>
+
+    <div id="response"></div>
+
+    <script>
+        // Accessing the iframe element
+        const iframe = document.getElementById('iframe');
+        const responseDiv = document.getElementById('response');
+        
+        // Sending a message to the iframe when the button is clicked
+        document.getElementById('sendMessageButton').addEventListener('click', () => {
+            iframe.contentWindow.postMessage('Hello from Parent', '*');  
+        });
+
+        // Listening for messages coming from the iframe
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin) {
+                return;
+            }
+
+            // Show the response from the iframe
+            console.log('Received message from iframe:', event.data);
+            responseDiv.textContent = `Response from iframe: ${event.data}`;
+        });
+    </script>
+</body>
+</html>

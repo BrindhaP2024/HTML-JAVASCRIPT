@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+}
+
+input:invalid + .invalid-feedback {
+    display: block;
+}

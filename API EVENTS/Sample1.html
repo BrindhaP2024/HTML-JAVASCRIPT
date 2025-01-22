@@ -1,0 +1,47 @@
+<!-- <button id="clickBtn" onclick="clickHandler();">Click Here to see the removeEventListener</button>
+<script>
+function clickHandler() {
+    console.log("Button clicked!");
+}
+
+// Add event listener to the button
+const button = document.getElementById("clickBtn");
+button.addEventListener("click", clickHandler);
+
+// Remove event listener after 3 seconds
+setTimeout(() => {
+    button.removeEventListener("click", clickHandler);
+    console.log("Event listener removed.");
+}, 2000);
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Object Example</title>
+    <style>
+        #clickBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickBtn">Event Object Reflections Here!</button>
+
+    <script>
+        const button = document.getElementById("clickBtn");
+
+        button.addEventListener("click", (event) => {
+            console.log("Event Type: " + event.type); // Logs the type of event
+            console.log("Target Element: ", event.target); // Logs the element that triggered the event
+            console.log("Coordinates: X: " + event.clientX + " Y: " + event.clientY); // Logs mouse coordinates
+        });
+    </script>
+</body>
+</html>
+
+

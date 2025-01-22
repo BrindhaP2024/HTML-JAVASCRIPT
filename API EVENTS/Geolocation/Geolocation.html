@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+</head>
+
+<body>
+
+    <h1>Geolocation API</h1>
+    <p>Click the button to get your current location.</p>
+
+    <button id="getLocationButton">Get Location</button>
+    <p id="locationOutput"></p>
+
+    <script>
+        // Function to get the user's current position
+        function getCurrentLocation() {
+            // Check if geolocation is available in the browser
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+
+                        // Display the result on the page
+                        document.getElementById("locationOutput").innerHTML = `
+                        Latitude: ${latitude} <br>
+                        Longitude: ${longitude} <br>
+                        Accuracy: ${accuracy} meters
+                    `;
+                    },
+                    function (error) {
+                        // Handle error if geolocation is not allowed or other issues
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                alert("User denied the request for Geolocation.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                alert("Location information is unavailable.");
+                                break;
+                            case error.TIMEOUT:
+                                alert("The request to get user location timed out.");
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                alert("An unknown error occurred.");
+                                break;
+                        }
+                    }
+                );
+            } else {
+                alert("Geolocation does not work here!!!.");
+            }
+        }
+
+        // Event listener for the button
+        document.getElementById("getLocationButton").addEventListener("click", getCurrentLocation);
+    </script>
+
+</body>
+
+</html>

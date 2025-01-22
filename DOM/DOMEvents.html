@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Color Changer with Dynamic Elements</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      transition: background-color 0.3s ease;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 24px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .red { background-color: red; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+    .yellow { background-color: yellow; }
+    .purple { background-color: purple; }
+    button:hover {
+      opacity: 0.8;
+    }
+    .dynamic-content {
+      margin-top: 20px;
+      font-size: 20px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      width: 50%;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click a button to change the background color</h1>
+
+  <!-- Color buttons -->
+  <button id="redButton" class="red">Red</button>
+  <button id="greenButton" class="green">Green</button>
+  <button id="blueButton" class="blue">Blue</button>
+  <button id="yellowButton" class="yellow">Yellow</button>
+  <button id="purpleButton" class="purple">Purple</button>
+
+  <!-- Dynamic content container -->
+  <div id="container"></div>
+
+  <script>
+    // Accessing the buttons using querySelectorAll
+    const buttons = document.querySelectorAll('button');
+
+    // Function to change the background color
+    function changeBackgroundColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+
+    // Loop through buttons and add event listeners for changing background color
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        const color = button.className.split(' ')[0]; // Get the first class name to determine color
+        changeBackgroundColor(color);
+      });
+    });
+
+    // Dynamically create and append new elements
+    function createNewElement() {
+      const newElement = document.createElement('div');
+      newElement.innerHTML = "This is a dynamically created content!";
+      newElement.classList.add('dynamic-content');
+      newElement.setAttribute('style', 'color: #333; font-weight: bold;');
+
+      // Append the new element to the container
+      document.getElementById('container').appendChild(newElement);
+    }
+
+    // Create and append a new element every 5 seconds
+    setInterval(createNewElement, 5000);
+
+    // Access the dynamically created elements and modify them
+    const container = document.querySelector('#container');
+    container.addEventListener('click', function(e) {
+      if (e.target && e.target.matches('div.dynamic-content')) {
+        e.target.innerHTML = "Content clicked!";
+        e.target.style.color = "green";
+      }
+    });
+
+    // Example of using window.onload and window.scrollTo
+    window.onload = function() {
+      console.log("Page loaded successfully.");
+      window.scrollTo(0, 150);  // Scroll to a certain position (0, 150) after page load
+    };
+
+    // Scroll to top when clicking any button
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        window.scrollTo(0, 0);  // Scroll back to top after color change
+      });
+    });
+
+    // Create an element dynamically on page load
+    window.onload = function() {
+      const welcomeMessage = document.createElement('p');
+      welcomeMessage.innerHTML = "Welcome to the Color Changer!";
+      welcomeMessage.style.fontSize = '22px';
+      welcomeMessage.style.color = 'black';
+      document.body.appendChild(welcomeMessage);
+    }
+
+  </script>
+
+</body>
+</html>

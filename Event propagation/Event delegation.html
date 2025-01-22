@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+</head>
+<body>
+
+<ul id="item-list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+
+<script>
+    const itemList = document.getElementById('item-list');
+
+    // Event delegation: Attach a single click event listener to the <ul> element
+    itemList.addEventListener('click', function(event) {
+        // Check if the clicked element is a <li> element
+        if (event.target.tagName.toLowerCase() === 'li') {
+            alert('You clicked: ' + event.target.textContent);
+        }
+    });
+</script>
+
+</body>
+</html>

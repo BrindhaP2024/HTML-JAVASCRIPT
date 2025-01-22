@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList Methods Example</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+
+        .active {
+            color: green;
+        }
+
+        .new-class {
+            color: blue;
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+        }
+
+        .replaced {
+            background-color: lightblue;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .div-container {
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myDiv" class="highlight active div-container">This is a div element</div>
+    <button onclick="addClass()">Add 'new-class'</button>
+    <button onclick="removeClass()">Remove 'highlight'</button>
+    <button onclick="toggleClass()">Toggle 'active'</button>
+    <button onclick="checkClass()">Check 'highlight'</button>
+    <button onclick="replaceClass()">Replace 'highlight' with 'replaced'</button>
+    <button onclick="logClassCount()">Log Class Count</button>
+
+    <script src="classlist.js">
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+#parent {
+
+    padding: 20px;
+
+    background-color: lightblue;
+
+}
+
+#child {
+
+    padding: 10px;
+
+    background-color: lightcoral;
+
+}
+
+button {
+
+    padding: 5px 10px;
+
+}

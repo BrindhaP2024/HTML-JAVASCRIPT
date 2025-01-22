@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Web Storage </title>
+</head>
+ 
+<body>
+
+    <!-- localstorage  -->
+    <h1>Local Storage Example</h1>
+ 
+    <input type="text" id="local" placeholder="Enter text for LocalStorage">
+    <button onclick="saveToLocal()">Save</button>
+    <div id="localOutput"></div>
+
+<!-- sessionStorage -->
+    <h1>Session Storage Example</h1>
+ 
+    <input type="text" id="session" placeholder="Enter value">
+    <button onclick="saveToSession()">Save</button>
+    <div id="sessionOutput"></div>
+ 
+    
+ 
+    <script>
+
+        
+        
+        var localOutput = document.getElementById('localOutput');
+        var sessionOutput = document.getElementById('sessionOutput');
+
+
+        function saveToLocal() {
+            var inputValue = document.getElementById('local').value;
+            localStorage.setItem('localData', inputValue);
+            localOutput.textContent = 'Saved data localStorage: ' + inputValue;
+        }
+ 
+        
+        function saveToSession() {
+            var inputValue = document.getElementById('session').value;
+            sessionStorage.setItem('sessionData', inputValue);
+            sessionOutput.textContent = 'Saved data SessionStorage: ' + inputValue;
+        }
+ 
+        window.onload = function () {
+           
+            var localSavedData = localStorage.getItem('localData');
+            if (localSavedData) {
+                localOutput.textContent = 'Saved data after load LocalStorage: ' + localSavedData;
+            }
+ 
+            var sessionSavedData = sessionStorage.getItem('sessionData');
+            if (sessionSavedData) {
+                sessionOutput.textContent = 'Saved data after load SessionStorage: ' + sessionSavedData;
+            }
+        }
+ 
+      
+    </script>
+ 
+</body>
+ 
+</html>

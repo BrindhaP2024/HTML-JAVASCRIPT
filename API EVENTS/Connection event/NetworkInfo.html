@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Information Example</title>
+</head>
+<body>
+    <div id="network-info"></div>
+
+    <script>
+        if ('connection' in navigator) {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            
+            document.getElementById('network-info').innerHTML = `
+                <p>Connection Type: ${connection.type}</p>
+                <p>Effective Connection Type: ${connection.effectiveType}</p>
+                <p>Downlink Speed: ${connection.downlink} Mbps</p>
+                <p>Downlink Max Speed: ${connection.downlinkMax} Mbps</p>
+                <p>RTT (Round-trip time): ${connection.rtt} ms</p>
+                <p>Save Data Mode: ${connection.saveData ? 'Enabled' : 'Disabled'}</p>
+            `;
+        } else {
+            document.getElementById('network-info').innerHTML = 'Network Information API is not supported by your browser.';
+        }
+    </script>
+</body>
+</html>

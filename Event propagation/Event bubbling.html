@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling Example</title>
+    <style>
+        .parent {
+            padding: 20px;
+            background-color: lightblue;
+        }
+
+        .child {
+            padding: 10px;
+            background-color: lightcoral;
+            margin-top: 10px;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parent">
+        Parent Element
+        <div class="child">
+            Child Element
+        </div>
+    </div>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        // Add event listener to the child element
+        document.querySelector(".child").addEventListener("click", function(event) {
+            document.getElementById("output").innerText = "Child element clicked!";
+            console.log("Child clicked!");
+        });
+
+        // Add event listener to the parent element
+        document.querySelector(".parent").addEventListener("click", function(event) {
+            document.getElementById("output").innerText = "Parent element clicked!";
+            console.log("Parent clicked!");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <title>WebSocket Example</title>
+</head>
+
+<body>
+    <h1>WebSocket Client Example</h1>
+    <button id="sendMessageButton">Send Message to Server</button>
+    <div id="response"></div>
+    <script>
+
+        const ws = new WebSocket("wss://echo.websocket.org");
+
+        ws.onopen = function (event) {
+            document.getElementById("response").textContent = "Connected to server!";
+        };
+
+        ws.onmessage = function (event) {
+            document.getElementById("response").textContent = "Server says: " + event.data;
+        };
+
+        ws.onerror = function (error) {
+            console.error("WebSocket error:", error);
+        };
+
+        ws.onclose = function (event) {
+
+            document.getElementById("response").textContent = "Disconnected from server.";
+        };
+
+        document.getElementById("sendMessageButton").onclick = function () {
+            const message = "Hello Server!";
+            ws.send(message);
+            console.log("Message sent:", message);
+        };
+    </script>
+</body>
+
+</html>

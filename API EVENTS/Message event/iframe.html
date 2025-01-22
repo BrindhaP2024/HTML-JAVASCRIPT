@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe</title>
+</head>
+<body>
+    <h1>Iframe Window</h1>
+
+    <script>
+        // Listening for messages from the parent window
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin) {
+                console.log('Blocked message from unknown origin:', event.origin);
+                return;
+            }
+
+            console.log('Received message in iframe:', event.data);
+
+            // Responding back to the parent window
+            event.source.postMessage('Hello from iframe', event.origin);
+        });
+    </script>
+</body>
+</html>

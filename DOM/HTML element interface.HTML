@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Element Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>HTML Elements Showcase</h1>
+
+        <!-- Paragraph Element -->
+        <p>This is a simple <b>paragraph</b> element. It contains some <i>formatted</i> text.</p>
+
+        <!-- Link Element -->
+        <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API" target="_blank">Click here to visit the page</a></p>
+
+        <!-- Image Element -->
+        <img src="https://images.pexels.com/photos/1188083/pexels-photo-1188083.png?cs=srgb&dl=sea-dawn-nature-1188083.jpg&fm=jpg" alt="Placeholder Image" width="150">
+
+        <!-- Button Element -->
+        <button id="myButton">Click Me!</button>
+
+        <!-- Input Element -->
+        <input type="text" id="myInput" placeholder="Enter some text" />
+
+        <!-- Textarea Element -->
+        <textarea id="myTextarea" rows="4" cols="50" placeholder="Type your message here..."></textarea>
+
+        <!-- Select Element -->
+        <label for="mySelect">Choose an option:</label>
+        <select id="mySelect">
+            <option value="apple">Apple</option>
+            <option value="banana">Banana</option>
+            <option value="cherry">Cherry</option>
+        </select>
+
+        <!-- Form Element -->
+        <form action="/submit" method="POST">
+            <label for="myName">Your Name:</label>
+            <input type="text" id="myName" name="name" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <!-- Table Element -->
+        <table>
+            <caption>Sample Table</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>30</td>
+                    <td>New York</td>
+                </tr>
+                <tr>
+                    <td>Jane</td>
+                    <td>25</td>
+                    <td>London</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Unordered List Element -->
+        <h2>Unordered List</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <!-- Ordered List Element -->
+        <h2>Ordered List</h2>
+        <ol>
+            <li>Step 1: Start here</li>
+            <li>Step 2: Do something</li>
+            <li>Step 3: Finish up</li>
+        </ol>
+
+        <!-- Definition List -->
+        <h2>Definition List</h2>
+        <dl>
+            <dt>HTML</dt>
+            <dd>A markup language for creating webpages</dd>
+            <dt>CSS</dt>
+            <dd>A stylesheet language for styling webpages</dd>
+        </dl>
+
+        <!-- Details Element -->
+        <details>
+            <summary>Click to see more details</summary>
+            <p>This is hidden content inside a <code>details</code> element. It can be expanded by clicking the summary.
+            </p>
+        </details>
+
+        <!-- Dialog Element -->
+        <dialog id="myDialog">
+            <p>This is a dialog box. You can interact with it by clicking the buttons below.</p>
+            <button onclick="document.getElementById('myDialog').close()">Close</button>
+        </dialog>
+        <button onclick="document.getElementById('myDialog').showModal()">Open Dialog</button>
+
+    </div>
+
+    <script>
+        // Button interaction
+        document.getElementById('myButton').addEventListener('click', function () {
+            alert('Button clicked!');
+        });
+    </script>
+
+</body>
+
+</html>

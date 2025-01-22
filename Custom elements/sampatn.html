@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous customElements</title>
+    <style>
+        toggle-switch {
+            display: inline;
+            width: 70px;
+            height: 30px;
+            background-color: rgb(219, 21, 54); /* Set the initial background color to pink */
+            position: relative;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: rgb(85, 159, 24);
+            border-radius: 50%;
+            transition: left 0.3s ease;
+        }
+
+        toggle-switch.on {
+            background-color: #4caf50;
+        }
+
+        toggle-switch.on::before {
+            left: 33px;
+        }
+
+        toggle-switch.off {
+            background-color: rgb(113, 35, 48); /* Maintain the pink color when it's off */
+        }
+
+        toggle-switch.off::before {
+            left: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <toggle-switch></toggle-switch>
+    <script>
+        class ToggleSwitch extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+                const wrapper = document.createElement('div');
+                wrapper.setAttribute('class', 'wrapper');
+                this.state = 'off';
+                //event listener to toggle between 'on' and 'off'
+                this.addEventListener('click', () => this.toggle());
+                //wrapping in shadow DOM
+                this.shadowRoot.appendChild(wrapper);
+                this.updateState();
+            }
+            toggle() {
+                this.state = this.state === 'off' ? 'on' : 'off';
+                this.updateState();
+            }
+            updateState() {
+                if (this.state == 'on') {
+                    this.setAttribute('class', 'on');
+                } else {
+                    this.setAttribute('class', 'off');
+                }
+            }
+        }
+        // Define the custom element to work
+        customElements.define('toggle-switch', ToggleSwitch);
+    </script>
+</body>
+
+</html>

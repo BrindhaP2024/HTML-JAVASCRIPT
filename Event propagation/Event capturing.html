@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            padding: 20px;
+            background-color: lightblue;
+        }
+        .child {
+            padding: 10px;
+            margin-top: 15px;
+            background-color: chocolate;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        parent here!
+    </div>
+    <div class="child">
+        child here!
+    </div>
+    <div class="output"></div>
+
+    <!-- Move the script here so that DOM elements are already available -->
+    <script>
+        // Child event listener with capturing phase
+        document.querySelector(".child").addEventListener("click", function(event) {
+            document.getElementById("output").innerText = "Child element clicked!";
+            console.log("Child captured!");
+        }, true);
+
+        // Parent event listener with capturing phase
+        document.querySelector(".parent").addEventListener("click", function(event) {
+            document.getElementById("output").innerText = "Parent element clicked!";
+            console.log("Parent captured!");
+        }, true);
+
+        console.log("Event listeners added!");
+    </script>
+</body>
+</html>

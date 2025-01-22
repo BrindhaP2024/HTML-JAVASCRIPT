@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Events Example</title>
+    <style>
+        #message {
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="message">This is a sample document. Try printing it!</div>
+    <script>
+        const message = document.getElementById('message');
+
+        window.addEventListener('beforeprint', () => {
+            message.textContent = 'The document is about to be printed!';
+            alert('Before print event fired.');
+            console.log('Before print event fired.');
+        });
+
+        window.addEventListener('afterprint', () => {
+            message.textContent = 'The document has been printed!';
+            alert('After print event fired.');
+            console.log('After print event fired.');
+        });
+    </script>
+</body>
+
+</html>

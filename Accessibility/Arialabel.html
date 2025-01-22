@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aria attribute</title>
+</head>
+<body>
+<button id="toggleButton" aria-expanded="false">Toggle Content</button>
+<div id="toggleContent" aria-hidden="true">This is some toggled content.</div>
+<div id="tglbutton" arua></div>
+<script>
+    const button = document.getElementById('toggleButton');
+    const content = document.getElementById('toggleContent');
+
+    button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', expanded);
+        content.setAttribute('aria-hidden', expanded);
+    });
+</script>
+</body>
+</html>
+

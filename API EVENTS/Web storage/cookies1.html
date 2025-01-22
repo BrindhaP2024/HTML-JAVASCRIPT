@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+</head>
+
+<body>
+    <input type="text" id="username" placeholder="Enter your name">
+    <button onclick="saveName()">Save Name</button>
+    <button onclick="deleteCookie()">Delete Cookie</button>
+    <div id="cookie"></div>
+
+    <script>
+        var cookieDisplay = document.getElementById('cookie');
+
+        // Function to save name to cookies
+        function saveName() {
+            var username = document.getElementById('username').value;
+            if (username) {
+                document.cookie = "name=" + username + "; max-age=604800"; // Set cookie for 7 days
+                cookieDisplay.textContent = 'Hello, ' + username + '!';
+            }
+        }
+
+        // Function to delete the cookie
+        function deleteCookie() {
+            document.cookie = "name=; max-age=0"; // Delete cookie
+            cookieDisplay.textContent = 'Cookie deleted. Please enter your name again.';
+        }
+
+        // Check if cookie exists and display the name from cookies
+        if (document.cookie) {
+            var cookieValue = document.cookie.split('=')[1];
+            cookieDisplay.textContent = 'Hello from cookies, ' + cookieValue + '!';
+        }
+
+    </script>
+</body>
+
+</html>

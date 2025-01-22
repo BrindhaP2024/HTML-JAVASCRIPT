@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .form-label::before {
+            content: "*";
+            color: #dc3545;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.75);
+            border-color: #007bff;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        .is-valid {
+            border-color: #28a745;
+        }
+
+        .invalid-feedback {
+            display: block;
+            font-size: 0.875rem;
+            color: #dc3545;
+        }
+
+        .valid-feedback {
+            display: block;
+            font-size: 0.875rem;
+            color: #28a745;
+        }
+
+        input:focus + .valid-feedback::after {
+            content: "Looks good!";
+            color: #28a745;
+            font-style: italic;
+        }
+
+        input:focus + .invalid-feedback::after {
+            content: "Please correct the field.";
+            color: #dc3545;
+            font-style: italic;
+        }
+
+        .mb-3 {
+            position: relative;
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
+
+        .form-control:focus::placeholder {
+            color: transparent;
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+
+        /* Error and success icon with pseudo-elements */
+        .form-control.is-invalid::before {
+            content: url('https://upload.wikimedia.org/wikipedia/commons/a/a7/Warning_icon.svg');
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+        }
+
+        .form-control.is-valid::before {
+            content: url('https://upload.wikimedia.org/wikipedia/commons/5/53/OK_Icon.svg');
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Form with All Validations</h2>
+        <form id="validationForm" method="POST" novalidate>
+            <!-- Name Field -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                <div class="invalid-feedback">Name should only contain alphabets (Max 20 characters).</div>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                <div class="invalid-feedback">Please enter a valid email (e.g., name@gmail.com, name@outlook.com).</div>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Mobile Number Field -->
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Mobile Number</label>
+                <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" required>
+                <div class="invalid-feedback">Please enter a valid 10-digit Indian mobile number.</div>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Postal Code (Pattern Validation) -->
+            <div class="mb-3">
+                <label for="postal" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="postal" placeholder="Enter postal code" required>
+                <div class="invalid-feedback">Please enter a valid postal code (e.g., 110001).</div>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Regular Expressions
+        const nameRegex = /^[A-Za-z\s]{1,20}$/; // Only alphabets, Max 20 characters
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|yahoo\.com|tcs\.com)$/; // Gmail, Outlook, Yahoo, TCS
+        const mobileRegex = /^[6-9]\d{9}$/; // Indian mobile numbers (starting with 6-9 and 10 digits)
+        const postalRegex = /^\d{6}$/; // Postal code (6 digits)
+
+        // Form Validation
+        document.getElementById('validationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Name Validation
+            const name = document.getElementById('name');
+            if (!nameRegex.test(name.value)) {
+                name.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+                name.classList.add('is-valid');
+            }
+
+            // Email Validation
+            const email = document.getElementById('email');
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                email.classList.remove('is-invalid');
+                email.classList.add('is-valid');
+            }
+
+            // Mobile Number Validation
+            const mobile = document.getElementById('mobile');
+            if (!mobileRegex.test(mobile.value)) {
+                mobile.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                mobile.classList.remove('is-invalid');
+                mobile.classList.add('is-valid');
+            }
+
+            // Postal Code Validation
+            const postal = document.getElementById('postal');
+            if (!postalRegex.test(postal.value)) {
+                postal.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                postal.classList.remove('is-invalid');
+                postal.classList.add('is-valid');
+            }
+
+            // If form is valid, you can submit it
+            if (isValid) {
+                alert("Form submitted successfully!");
+                // You can also submit the form via AJAX or other methods
+            }
+        });
+    </script>
+
+</body>
+
+</html>

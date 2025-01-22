@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connection Events</title>
+  <style>
+    #status {
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .online {
+      background-color: green;
+      color: white;
+    }
+    .offline {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="status" class="online">You are online</div>
+  <script>
+    const statusDisplay = document.getElementById('status');
+
+    function updateOnlineStatus() {
+      statusDisplay.textContent = 'You are online';
+      statusDisplay.className = 'online';
+    }
+
+    function updateOfflineStatus() {
+      statusDisplay.textContent = 'You are offline';
+      statusDisplay.className = 'offline';
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOfflineStatus);
+
+    // Initial check using navigator.onLine
+    if (navigator.onLine) {
+      updateOnlineStatus();
+    } else {
+      updateOfflineStatus();
+    }
+  </script>
+</body>
+</html>

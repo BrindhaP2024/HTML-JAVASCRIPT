@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Example</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: rgb(140, 52, 216);
+            background-color: rgb(171, 230, 232);
+            justify-content: center;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="clickBtn">Click Here!!</button>
+
+    <script>
+        // Using addEventListener
+        document.getElementById("clickBtn").addEventListener("click", function() {
+            console.log("Event triggered using addEventListener!");
+        });
+
+        // // Using inline event handle
+        // function alertMessage() {
+        //     alert("Event triggered using inline handler!");
+        // }
+
+        // Using event handler property
+        document.getElementById("clickBtn").onclick = function() {
+            alert("Event triggered using event handler property!");
+        };
+    </script>
+</body>
+</html>

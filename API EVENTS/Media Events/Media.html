@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Events Example</title>
+  <style>
+    #log {
+      margin-top: 20px;
+      font-family: monospace;
+      background-color: #f4f4f4;
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #ddd;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Media Events Example</h1>
+
+  <!-- Audio player -->
+  <audio id="audio" controls>
+    <source src="Media\Oh Butterfly ! BGM !.mp3" type="audio/mp3">
+    
+  </audio>
+
+  <!-- Log output -->
+  <div id="log">Event log will appear here...</div>
+
+  <script>
+    const audioElement = document.getElementById('audio');
+    const log = document.getElementById('log');
+
+    // Event listeners for various media events
+    audioElement.addEventListener('play', () => logEvent('play'));
+    audioElement.addEventListener('pause', () => logEvent('pause'));
+    audioElement.addEventListener('ended', () => logEvent('ended'));
+    audioElement.addEventListener('canplay', () => logEvent('canplay'));
+    audioElement.addEventListener('canplaythrough', () => logEvent('canplaythrough'));
+    audioElement.addEventListener('durationchange', () => logEvent('durationchange'));
+    audioElement.addEventListener('emptied', () => logEvent('emptied'));
+    audioElement.addEventListener('loadeddata', () => logEvent('loadeddata'));
+    audioElement.addEventListener('loadedmetadata', () => logEvent('loadedmetadata'));
+    audioElement.addEventListener('loadstart', () => logEvent('loadstart'));
+    audioElement.addEventListener('ratechange', () => logEvent('ratechange'));
+    audioElement.addEventListener('seeked', () => logEvent('seeked'));
+    audioElement.addEventListener('seeking', () => logEvent('seeking'));
+    audioElement.addEventListener('stalled', () => logEvent('stalled'));
+    audioElement.addEventListener('suspend', () => logEvent('suspend'));
+    audioElement.addEventListener('timeupdate', () => logEvent('timeupdate'));
+    audioElement.addEventListener('volumechange', () => logEvent('volumechange'));
+    audioElement.addEventListener('waiting', () => logEvent('waiting'));
+
+    // Function to log events to the console and the log div
+    function logEvent(eventName) {
+      const currentTime = new Date().toLocaleTimeString();
+      log.textContent += `\n[${currentTime}] Event: ${eventName}`;
+    }
+
+  </script>
+
+</body>
+</html>

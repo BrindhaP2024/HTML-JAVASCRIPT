@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Custom Element - Toggle Switch</title>
+    <style>
+        toggle-switch {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: left 0.3s ease;
+        }
+
+        toggle-switch.on {
+            background-color: #4caf50;
+        }
+
+        toggle-switch.on::before {
+            left: 33px;
+        }
+
+        toggle-switch.off {
+            background-color: #f44336;
+        }
+
+        toggle-switch.off::before {
+            left: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Using the custom toggle-switch element -->
+<toggle-switch></toggle-switch>
+
+<script>
+    class ToggleSwitch extends HTMLElement {
+        constructor() {
+            super(); // Call the parent constructor (HTMLElement)
+            this.attachShadow({ mode: 'open' }); // Attach a shadow DOM
+
+            // Create internal structure for the toggle
+            const wrapper = document.createElement('div');
+            wrapper.setAttribute('class', 'wrapper');
+            
+            // Define the initial state of the toggle (off)
+            this.state = 'off'; // Default state is 'off'
+
+            // Add an event listener to toggle between states when clicked
+            wrapper.addEventListener('click', () => this.toggle());
+
+            // Append wrapper inside the shadow DOM
+            this.shadowRoot.appendChild(wrapper);
+            this.updateState(); // Update the toggle display based on initial state
+        }
+
+        // Method to toggle the state between 'on' and 'off'
+        toggle() {
+            this.state = this.state === 'off' ? 'on' : 'off';
+            this.updateState();
+        }
+
+        // Method to update the display based on the current state
+        updateState() {
+            // Add or remove the 'on' class based on the current state
+            if (this.state === 'on') {
+                this.setAttribute('class', 'on');
+            } else {
+                this.setAttribute('class', 'off');
+            }
+        }
+    }
+
+    // Define the custom element 'toggle-switch'
+    customElements.define('toggle-switch', ToggleSwitch);
+</script>
+
+</body>
+</html>

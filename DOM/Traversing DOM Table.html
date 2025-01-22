@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traversing HTML Table with JavaScript</title>
+  <style>
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align: center;">HTML Table Traversal Example</h1>
+
+  <!-- Create a table -->
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>25</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jane Smith</td>
+        <td>30</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Tom Brown</td>
+        <td>35</td>
+        <td>Canada</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center;">
+    <button onclick="traverseTable()">Traverse Table</button>
+    <button onclick="highlightRow(1)">Highlight Row 1</button>
+    <button onclick="getCellContent()">Get Cell Content</button>
+  </div>
+
+  <script>
+    function traverseTable() {
+      const table = document.getElementById("myTable");
+      const rows = table.rows; 
+
+
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].cells;
+        let rowData = [];
+        for (let j = 0; j < cells.length; j++) {
+          rowData.push(cells[j].textContent);
+        }
+        console.log("Row " + i + ": " + rowData.join(", "));
+      }
+    }
+
+    function highlightRow(rowIndex) {
+      const table = document.getElementById("myTable");
+      const row = table.rows[rowIndex]; // Get the row by index
+
+      row.style.backgroundColor = "#f0f8ff";
+    }
+
+    function getCellContent() {
+      const table = document.getElementById("myTable");
+      const rowIndex = 1; 
+      const cellIndex = 2;
+      
+      const row = table.rows[rowIndex];
+      const cell = row.cells[cellIndex]; 
+
+      alert("Content of Row " + (rowIndex + 1) + ", Cell " + (cellIndex + 1) + ": " + cell.textContent);
+    }
+  </script>
+
+</body>
+</html>

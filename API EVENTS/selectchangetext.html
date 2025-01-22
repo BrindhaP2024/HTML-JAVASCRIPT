@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Change</title>
+</head>
+<body>
+    <textarea id="myTextarea" rows="10" cols="30">Try selecting some text in this textarea.</textarea>
+    <p id="output"></p>
+
+    <script>
+        const textarea = document.getElementById('myTextarea');
+        const output = document.getElementById('output');
+
+        textarea.addEventListener('select', () => {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+            output.textContent = `Selected text: "${selectedText}" (from ${start} to ${end})`;
+        });
+    </script>
+</body>
+</html>

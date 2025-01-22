@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Accessible</title>
+    </title>
+</head>
+
+<body>
+    <button id="keyboardButton" tabindex="0">Click or Press Enter</button>
+
+    <script>
+        const button = document.getElementById('keyboardButton');
+
+        button.addEventListener('click', () => {
+            alert('Button clicked!');
+        });
+
+        // Ensuring keyboard accessibility
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                button.click(); // Simulate click on keyboard action
+            }
+        });
+    </script>
+
+</body>
+
+</html>

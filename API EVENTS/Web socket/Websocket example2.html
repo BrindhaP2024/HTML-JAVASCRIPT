@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Human-like Responses</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        #sendMessageButton {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #sendMessageButton:hover {
+            background-color: #45a049;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            min-height: 40px;
+        }
+
+        #messageInput {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .message-log {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .message-log .message {
+            background-color: #f1f1f1;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .message-log .received {
+            background-color: #e0f7fa;
+        }
+
+        .message-log .sent {
+            background-color: #ffecb3;
+        }
+    </style> -->
+</head>
+
+<body>
+    <h1>WebSocket Request-Response Example</h1>
+    <div>
+        <label for="messageInput">Text Here:</label>
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button id="sendMessageButton">Send Message to Server</button>
+    </div>
+    <div id="response"></div>
+    <div class="message-log" id="messageLog"></div>
+
+    <script>
+        let ws;
+        const messageLog = document.getElementById('messageLog');
+        const responseDiv = document.getElementById('response');
+        const sendMessageButton = document.getElementById('sendMessageButton');
+        const messageInput = document.getElementById('messageInput');
+    
+        function connectWebSocket(){
+            ws = new WebSocket("wss://echo.websocket.org");
+    
+        }
+        // Function to create a new WebSocket connection
+        function connectWebSocket() {
+            ws = new WebSocket("wss://echo.websocket.org");
+
+            ws.onopen = function () {
+                responseDiv.textContent = "Connected to the server!";
+                responseDiv.style.backgroundColor = "#d4edda"; // Green for success
+                addMessageLog("Connected to server.", "received");
+            };
+
+            ws.onmessage = function (event) {
+                // Simulate a human-like response here
+                const userMessage = event.data;
+                let replyMessage = generateHumanReply(userMessage);
+
+                // Show the human-like reply in the response div
+                responseDiv.textContent = "Server says: " + replyMessage;
+                addMessageLog("Server: " + replyMessage, "received");
+            };
+
+            ws.onerror = function (error) {
+                console.error("WebSocket error:", error);
+                responseDiv.textContent = "Error with WebSocket connection.";
+                responseDiv.style.backgroundColor = "#f8d7da"; // Red for error
+            };
+
+            ws.onclose = function () {
+                responseDiv.textContent = "Disconnected from server. Reconnecting...";
+                responseDiv.style.backgroundColor = "#fff3cd"; // Yellow for disconnect
+                addMessageLog("Disconnected from server.", "received");
+                reconnectWebSocket();
+            };
+        }
+
+        // Function to reconnect to WebSocket after disconnect
+        function reconnectWebSocket() {
+            setTimeout(() => {
+                console.log("Attempting to reconnect...");
+                connectWebSocket();
+            }, 3000); // Reconnect after 3 seconds
+        }
+
+        // Function to send messages to the WebSocket server
+        function sendMessage() {
+            const message = messageInput.value;
+            if (message && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(message);
+                addMessageLog("You: " + message, "sent");
+                messageInput.value = ''; // Clear input after sending
+            } else {
+                alert("WebSocket is not connected or the message is empty.");
+            }
+        }
+
+        // Function to log messages in the message log area
+        function addMessageLog(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(type);
+            messageLog.appendChild(messageDiv);
+        }
+
+        // Simulate a human-like reply based on the user's message
+        function generateReply(message) {
+            if (message.includes("how are you")) {
+                return "I'm doing great, thank you for asking!";
+            } else if (message.includes("hello")) {
+                return "Hi there! How can I assist you today?";
+            } else if (message.includes("bye")) {
+                return "Goodbye! Have a great day!";
+            } else {
+                return "That's interesting! Tell me more...";
+            }
+        }
+
+        // Initialize WebSocket connection when the page loads
+        window.onload = function () {
+            connectWebSocket();
+        };
+
+        // Set up event listeners
+        sendMessageButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+    </script>
+</body>
+
+</html>

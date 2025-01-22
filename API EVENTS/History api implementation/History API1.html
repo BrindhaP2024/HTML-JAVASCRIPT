@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History API with Forward, Back, Go</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>History API with Forward, Back, and Go</h1>
+    <div class="content">
+        <p>Current Page: <span id="page">Home</span></p>
+        <button class="button" id="homeButton">Home</button>
+        <button class="button" id="aboutButton">About</button>
+        <button class="button" id="contactButton">Contact</button>
+        <br>
+        <button class="button" id="backButton">Back</button>
+        <button class="button" id="forwardButton">Forward</button>
+        <button class="button" id="goButton">Go (specific)</button>
+    </div>
+    <script>
+        function updateContent(page){
+            document.getElementById('page').textContent= page;
+        }
+        window.onpopstate = function(event){
+            if (event.state){
+                updateContent(event.state.page);
+            }
+        };
+    </script>
+    <script>
+        // Function to update the page content based on the current state
+        function updateContent(page) {
+            document.getElementById('page').textContent = page;
+        }
+
+        // Handle state changes when the back/forward buttons are pressed
+        window.onpopstate = function(event) {
+            if (event.state) {
+                // Update the content based on the state
+                updateContent(event.state.page);
+            }
+        };
+
+        // Set up the navigation buttons
+        document.getElementById('homeButton').addEventListener('click', function() {
+            const state = { page: 'Home' };
+            history.pushState(state, 'Home Page', '/home');
+            updateContent('Home');
+        });
+
+        document.getElementById('aboutButton').addEventListener('click', function() {
+            const state = { page: 'About' };
+            history.pushState(state, 'About Page', '/about');
+            updateContent('About');
+        });
+
+        document.getElementById('contactButton').addEventListener('click', function() {
+            const state = { page: 'Contact' };
+            history.pushState(state, 'Contact Page', '/contact');
+            updateContent('Contact');
+        });
+
+        // Back button functionality
+        document.getElementById('backButton').addEventListener('click', function() {
+            history.back(); // Navigates back in history
+        });
+
+
+        document.getElementById('forwardButton').addEventListener('click', function() {
+            history.forward(); 
+        });
+
+
+        document.getElementById('goButton').addEventListener('click', function() {
+            history.go(-2); // Goes 2 steps back in history
+        });
+
+        
+        history.replaceState({ page: 'Home' }, 'Home Page', '/home');
+        updateContent('Home');
+    </script>
+
+</body>
+</html>

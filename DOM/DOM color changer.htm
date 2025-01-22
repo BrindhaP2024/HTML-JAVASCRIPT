@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Color Changer</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 24px;
+      margin: 10px;
+      cursor:pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .red { background-color: red; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+    .yellow { background-color: yellow; }
+    .purple { background-color: purple; }
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click a button to change the background color</h1>
+
+  <button id="redButton" class="red">Red</button>
+  <button id="greenButton" class="green">Green</button>
+  <button id="blueButton" class="blue">Blue</button>
+  <button id="yellowButton" class="yellow">Yellow</button>
+  <button id="purpleButton" class="purple">Purple</button>
+
+  <script>
+    // Accessing the buttons using their IDs
+    const redButton = document.getElementById('redButton');
+    const greenButton = document.getElementById('greenButton');
+    const blueButton = document.getElementById('blueButton');
+    const yellowButton = document.getElementById('yellowButton');
+    const purpleButton = document.getElementById('purpleButton');
+
+    function changeBackgroundColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+
+    redButton.addEventListener('click', function() {
+      changeBackgroundColor('red');
+    });
+
+    greenButton.addEventListener('click', function() {
+      changeBackgroundColor('green');
+    });
+
+    blueButton.addEventListener('click', function() {
+      changeBackgroundColor('blue');
+    });
+
+    yellowButton.addEventListener('click', function() {
+      changeBackgroundColor('yellow');
+    });
+
+    purpleButton.addEventListener('click', function() {
+      changeBackgroundColor('purple');
+    });
+  </script>
+
+</body>
+</html>

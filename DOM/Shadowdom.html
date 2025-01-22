@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Shadow DOM Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f9;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Custom Card Component using Shadow DOM</h1>
+
+  <div id="container"></div>
+
+  <script>
+    // Create a custom card component with Shadow DOM
+    class CustomCard extends HTMLElement {
+      constructor() {
+        super(); // Call the parent constructor
+
+        // Create the shadow root
+        const shadow = this.attachShadow({mode: 'open'});
+
+        // Create the card container
+        const card = document.createElement('div');
+        card.setAttribute('class', 'card');
+
+        // Create title and content
+        const title = document.createElement('h2');
+        title.textContent = this.getAttribute('title') || 'Default Title';
+        
+        const content = document.createElement('p');
+        content.textContent = this.getAttribute('content') || 'This is a default content for the card.';
+
+        // Create the button
+        const button = document.createElement('button');
+        button.textContent = 'Click Me';
+        
+        // Add button click functionality
+        button.addEventListener('click', () => {
+          alert(`Button in the card with title "${title.textContent}" clicked!`);
+        });
+
+        // Style the card
+        const style = document.createElement('style');
+        style.textContent = `
+          .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+          }
+          .card:hover {
+            transform: scale(1.05);
+          }
+          h2 {
+            color: #333;
+            font-size: 24px;
+          }
+          p {
+            font-size: 16px;
+            color: #555;
+          }
+          button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+          button:hover {
+            background-color: #0056b3;
+          }
+        `;
+
+        // Append styles and elements to the shadow root
+        shadow.appendChild(style);
+        card.appendChild(title);
+        card.appendChild(content);
+        card.appendChild(button);
+        shadow.appendChild(card);
+      }
+    }
+
+    // Register the custom element
+    customElements.define('custom-card', CustomCard);
+
+    // Create instances of the custom card component and append to container
+    const container = document.getElementById('container');
+    
+    // Add 3 custom card instances
+    const card1 = document.createElement('custom-card');
+    card1.setAttribute('title', 'Card 1');
+    card1.setAttribute('content', 'This is the first card.');
+    
+    const card2 = document.createElement('custom-card');
+    card2.setAttribute('title', 'Card 2');
+    card2.setAttribute('content', 'This is the second card.');
+    
+    const card3 = document.createElement('custom-card');
+    card3.setAttribute('title', 'Card 3');
+    card3.setAttribute('content', 'This is the third card.');
+
+    container.appendChild(card1);
+    container.appendChild(card2);
+    container.appendChild(card3);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Example</title>
+</head>
+<body>
+    <h1>Welcome to My SPA</h1>
+    <div id="content">
+        <h2>Home Page</h2>
+        <p>This is the home page content.</p>
+        <button id="navigateToAbout">Go to About Page</button>
+    </div>
+
+    <script>
+        // Function to update content and URL
+        function updateContent() {
+            const content = document.getElementById('content');
+
+            // Check the state and update content accordingly
+            if (history.state && history.state.page === 'about') {
+                content.innerHTML = `
+                    <h2>About Page</h2>
+                    <p>This is the about page content.</p>
+                    <button id="navigateToHome">Go to Home Page</button>
+                `;
+                document.getElementById('navigateToHome').addEventListener('click', goToHome);
+            } else {
+                content.innerHTML = `
+                    <h2>Home Page</h2>
+                    <p>This is the home page content.</p>
+                    <button id="navigateToAbout">Go to About Page</button>
+                `;
+                document.getElementById('navigateToAbout').addEventListener('click', goToAbout);
+            }
+        }
+
+        // Navigate to the About page
+        function goToAbout() {
+            history.pushState({ page: 'about' }, 'About', '/about');
+            updateContent();
+        }
+
+        // Navigate to the Home page
+        function goToHome() {
+            history.pushState({ page: 'home' }, 'Home', '/home');
+            updateContent();
+        }
+
+        // Handle browser back/forward navigation
+        window.onpopstate = function(event) {
+            updateContent();
+        };
+
+        // Initialize the page based on the current history state
+        updateContent();
+    </script>
+</body>
+</html>

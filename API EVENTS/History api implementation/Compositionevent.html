@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p>Type in the text box to see composition events:</p>
+    <input type="text" id="inputBox" />
+    <div id="log"></div>
+
+    <script>
+        const inputBox = document.getElementById('inputBox');
+        const log = document.getElementById('log');
+
+        function logEvent(event) {
+            const message = `${event.type}: ${event.data}`;
+            const newLog = document.createElement('div');
+            newLog.textContent = message;
+            log.appendChild(newLog);
+        }
+
+        inputBox.addEventListener('compositionstart', logEvent);
+        inputBox.addEventListener('compositionupdate', logEvent);
+        inputBox.addEventListener('compositionend', logEvent);
+    </script>
+</body>
+
+</html>

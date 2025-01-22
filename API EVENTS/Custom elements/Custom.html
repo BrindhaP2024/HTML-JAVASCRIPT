@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Element: User Profile</title>
+    <style>
+        user-profile {
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        user-profile h3 {
+            color: #3366cc;
+            margin-bottom: 5px;
+        }
+
+        user-profile p {
+            margin: 5px 0;
+            color: #555;
+        }
+        user-profile {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Custom User Profile Element</h1>
+
+    <!-- Using the custom element -->
+    <user-profile name="Arun" age="20"></user-profile>
+    <user-profile name="Janani" age="25"></user-profile>
+
+    <script>
+        class UserProfile extends HTMLElement {
+            constructor() {
+                super(); 
+            }
+
+            connectedCallback() {
+                const name = this.getAttribute('name');
+                const age = this.getAttribute('age');
+                this.innerHTML = `
+                    <h3>${name}</h3>
+                    <p>Age: ${age}</p>
+                `;
+            }
+        }
+        customElements.define('user-profile', UserProfile);
+    </script>
+
+</body>
+
+</html>

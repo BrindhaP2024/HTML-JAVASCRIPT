@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color:sandybrown;
+}
+
+audio {
+    width: 80%;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: hotpink;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color:plum;
+}
+
+#consoleOutput {
+    margin-top: 30px;
+    background-color:lightsalmon;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 100px;
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}

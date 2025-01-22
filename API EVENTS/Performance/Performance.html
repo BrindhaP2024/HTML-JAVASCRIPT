@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance API Events</title>
+</head>
+
+<body>
+    <button id="measureButton">Measure Performance</button>
+    <script>
+        const measureButton = document.getElementById('measureButton');
+
+        measureButton.addEventListener('click', () => {
+            // Start a performance mark
+            performance.mark('start');
+
+            // Simulate a task by using setTimeout
+            setTimeout(() => {
+                // End the performance mark
+                performance.mark('end');
+
+                // Measure the duration between the two marks
+                performance.measure('taskDuration', 'start', 'end');
+
+                // Get the performance entries
+                const entries = performance.getEntriesByType('measure');
+                entries.forEach(entry => {
+                    console.log(`Name: ${entry.name}, Duration: ${entry.duration}`);
+                });
+
+                // Clear the performance entries
+                performance.clearMarks();
+                performance.clearMeasures();
+            }, 1000);
+        });
+
+        // Listen for the performance events
+        performance.addEventListener('resourcetimingbufferfull', () => {
+            console.log('Resource timing buffer is full.');
+        });
+
+        performance.addEventListener('entry', (event) => {
+            console.log('Performance entry added:', event.entry);
+        });
+    </script>
+</body>
+
+</html>
