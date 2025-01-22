@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window event</title>
+    <style>
+        body {
+            height: 2000px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Window Events </h1>
+    <p>Resize the window, scroll the page, or switch tabs to see the events in action.</p>
+
+    <script>
+        // Load event
+        window.addEventListener('load', (event) => {
+            console.log('Page is fully loaded');
+        });
+
+        // Resize event
+        window.addEventListener('resize', (event) => {
+            console.log('Window resized');
+        });
+
+        // Scroll event
+        window.addEventListener('scroll', (event) => {
+            console.log('Window scrolled');
+        });
+
+        // Beforeunload event
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            console.log('Before unload event triggered');
+        });
+
+        window.addEventListener('unload', (event) => {
+            console.log('Page is unloading');
+        });
+
+        // Focus event
+        window.addEventListener('focus', (event) => {
+            console.log('Window gained focus');
+        });
+
+        window.addEventListener('blur', (event) => {
+            console.log('Window lost focus');
+        });
+    </script>
+</body>
+</html>
