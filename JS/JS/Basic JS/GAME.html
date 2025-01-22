@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Game</title>
+</head>
+<body>
+    <p>Click the button as many times in 10 seconds</p>
+    <button id="clickButton">Click</button>
+    <p id="scores">Scores: 0</p>
+    <br>
+    <p id="timer">Time Left: 10</p>
+
+    <script>
+        let score = 0;   
+        let timeLeft = 20;
+        let timer;
+
+        // Event listener for the button click
+        document.getElementById('clickButton').addEventListener('click', () => {
+            if (timeLeft > 0) {
+                score++;  // Increment the score
+                document.getElementById('scores').textContent = 'Scores: ' + score;  
+            }
+        });
+
+        // Start the timer countdown
+        function startGame() {
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = 'Time Left: ' + timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert('Game Over! Your final score is: ' + score);
+                }
+            }, 1000); // Update every 1 second
+        }
+
+        startGame(); // Start the game as soon as the page loads
+    </script>
+  
+</body>
+</html>

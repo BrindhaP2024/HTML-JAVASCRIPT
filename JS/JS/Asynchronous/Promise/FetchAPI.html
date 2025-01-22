@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Example</title>
+</head>
+<body>
+    <h1>Sending JSON Data</h1>
+    <button onclick="sendData()">Send Data</button>
+
+    <script>
+        function sendData() {
+            const jsonData = {
+                name: 'Harini',
+                age: 24,
+                occupation: 'Software Developer',
+            };
+
+            console.log('Sending the following JSON data:', jsonData);
+
+            setTimeout(() => {
+                console.log('Response from server:', jsonData);
+            }, 1000); 
+        }
+    </script>
+</body>
+</html>

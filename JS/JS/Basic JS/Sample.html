@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Hold</button>
+    <div id="check"></div>
+
+    <script>
+        const button = document.querySelector('#btn');
+        function hold() {
+            const name = prompt("Learn scripting language");
+            const view = document.querySelector('#check');
+            view.textContent = `Hello ${name}!`; 
+        }
+
+        button.addEventListener("click", hold);
+    </script>
+</body>
+</html>

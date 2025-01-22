@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage of let var const</title>
+</head>
+
+<body>
+    <h1>Usage of let var const.</h1>
+    <p id="result"> </p>
+    <script>
+        var output = document.getElementById("result");
+
+        function testvar() {
+            if (true) {
+              a = 10;
+
+            }
+            return a;
+        }
+
+
+        function testlet() {
+            if (true) {
+                let b = 100;
+
+                return b;
+            }
+        }
+
+        function testconst() {
+            if (true) {
+                const c = 1000;
+                return c;
+            }
+
+        }
+        result.innerHTML = `
+    Result A : ${testVar()}</br>
+    Return B : ${testlet()}</br>
+    Return C : ${testconst()}</br>`
+    </script>
+</body>
+
+</html>

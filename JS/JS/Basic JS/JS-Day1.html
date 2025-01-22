@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Overview Example</title>
+</head>
+
+<body>
+    <h1>JavaScript Basics Example</h1>
+    <button id="myButton">Click Me</button>
+    <p id="message"></p>
+
+    <script>
+        let message = "JavaScript is running!";
+        document.getElementById("myButton").addEventListener("click", function() {
+            document.getElementById("message").innerText = message;
+            console.log("Button clicked! Message displayed.");
+        });
+        console.log("The initial message is: " + message);
+    </script>
+
+</body>
+
+</html>

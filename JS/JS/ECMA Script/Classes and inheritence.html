@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Example</title>
+    <script>
+        // Parent Class (Base Class)
+        class Book {
+            // Private fields
+            #title;
+            #author;
+
+            // Constructor to initialize the book
+            constructor(title, author) {
+                this.#title = title;
+                this.#author = author;
+            }
+
+            // Method to display book info
+            getInfo() {
+                return `Book: "${this.#title}" by ${this.#author}`;
+            }
+
+            // Static method to display general info about books
+            static bookType() {
+                return "Books are a source of knowledge and entertainment.";
+            }
+        }
+
+        // Child Class (Inheriting from Book)
+        class Ebook extends Book {
+            constructor(title, author, fileSize) {
+                super(title, author); // Calling parent constructor
+                this.fileSize = fileSize;
+            }
+
+            // Method to display Ebook-specific info
+            getEbookInfo() {
+                return `${this.getInfo()} It has a file size of ${this.fileSize} MB.`;
+            }
+
+            // Overriding static method
+            static bookType() {
+                return "Ebooks are digital versions of printed books.";
+            }
+        }
+
+        window.onload = function() {
+        
+            const myEbook = new Ebook("The Great Gatsby", "F. Scott Fitzgerald", 5);
+
+            // Display output
+            document.getElementById("book-info").innerText = myEbook.getEbookInfo();
+            document.getElementById("static-info").innerText = Ebook.bookType();
+        };
+    </script>
+</head>
+<body>
+    <h1>Book Example</h1>
+    <div>
+        <h2>Ebook Information:</h2>
+        <p id="book-info"></p>
+    </div>
+    <div>
+        <h2>Static Method Output:</h2>
+        <p id="static-info"></p>
+    </div>
+</body>
+</html>

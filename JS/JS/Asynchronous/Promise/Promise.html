@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Rejection Events</title>
+</head>
+
+<body>
+    <h1>Check the console for Promise Rejection Events</h1>
+    <script>
+        // Handling the unhandledrejection and rejectionhandled events globally
+        window.addEventListener('unhandledrejection', (event) => {
+            console.log('Unhandled promise rejection:', event.reason);
+        });
+
+        window.addEventListener('rejectionhandled', (event) => {
+            console.log('Promise rejection handled:', event.reason);
+        });
+
+        // Creating a promise that is rejected without a handler
+        const promise = new Promise((_, reject) => {
+            reject('Something went wrong');
+        });
+
+        // Simulating a delay before handling the rejection
+        setTimeout(() => {
+            promise.catch((error) => {
+                console.log('Handling promise rejection:', error);
+            });
+        }, 3000);
+    </script>
+</body>
+
+</html>
