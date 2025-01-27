@@ -37,7 +37,7 @@ Promise.allSettled(promises)
     console.log("Promise.allSettled() results:", results);
   });
 
-// Promise.race()
+//race()
 Promise.race(promises)
   .then(result => {
     console.log("Promise.race() result:", result);
